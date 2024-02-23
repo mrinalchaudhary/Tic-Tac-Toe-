@@ -52,6 +52,7 @@ const showWinner = (winner) =>{
 };
 
 const checkWinner =() => {
+    let draw = true;
     for(let pattern of winPatterns){
         let pos1Val = boxes[pattern[0]].innerText;
         let pos2Val = boxes[pattern[1]].innerText;
@@ -63,6 +64,19 @@ const checkWinner =() => {
             }
         }
 
+    }
+    for (let box of boxes) {
+        if (box.innerText === "") {
+            // If there's still an empty box, the game is not a draw yet
+            draw = false;
+            break;
+        }
+    }
+
+    if (draw) {
+        
+        msg.innerText = "It's a draw! Play a new game.";
+        msgContainer.classList.remove("hide");
     }
 };
 
